@@ -2,30 +2,76 @@
 
 <div class="container">
 
+	
 
-<h2>Hi Friend,
-<p>I sent you this link because I like your taste in movies. <br>Using this simple tool, we can find out what movies we should watch on Netflix. <br>Love,<br> Jake</p></h2>
-<br>
-<p>First, drag this link to your Bookmarks bar:
-<a href="javascript:var d=new Date();r=d.getTime();var e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('src','https://raw.github.com/cmenscher/nflx/master/bookmarklet.js?r='+r);document.body.appendChild(e);void(0);
-">Free My Ratings!</a>
-</p>
-<p>
-Then visit <a target = "_blank" href="http://movies.netflix.com/MoviesYouveSeen">http://movies.netflix.com/MoviesYouveSeen</a> and click your new Bookmarklet to free your ratings!
-</p>
+	<div id="intro" class="introbox">
+	Hi Friend,
+	<p>I like your taste in movies. <p>
+		This simple tool will help us decide what to watch on Netflix.
+		<p>Love,<br> Jake</p>
+	<div id ="next1" class="btn btn-large btn-primary">Next</div>&nbsp;&nbsp;<div id ="skipIntro" class="btn btn-large">Skip Intro</div>
+	</div>
 
-<br>
-<%= form_tag({:action => :upload}, :multipart => true) do %>
-  <%= label_tag('movies', "Now upload your json file here:") %>
-  <%= file_field_tag 'movies', :required => true %>
-  <br><br>
-  <%= label_tag(:name, "All done? Enter your name here:") %>
-  <%= text_field_tag(:name, nil, :required => true) %>
-  <%= submit_tag("Submit", class: 'btn') %>
-<% end %>
+	<div id="bookmarklet" class="introbox">
+		<p>First, drag this button to your Bookmarks bar:</p>
+		<a class="btn btn-large" href="javascript:var d=new Date();r=d.getTime();var e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('src','https://raw.github.com/cmenscher/nflx/master/bookmarklet.js?r='+r);document.body.appendChild(e);void(0);
+		">Free My Ratings!</a>
+		</p>
+		<div id ="next2" class="btn btn-large btn-primary">Next</div>		
+	</div>
+	<div id="visit" class="introbox">
+		<p>
+		Then visit <a target = "_blank" href="http://movies.netflix.com/MoviesYouveSeen" id="bitmarklet">this Netflix page</a> and click your new Bookmarklet. (It takes a few seconds.)
+		</p>
+		<div id ="next3" class="btn btn-large btn-primary">Next</div>		
+	</div>
 
-<p class="text-error">
-<%= flash[:error] %>
-</p>
-
+	<div id="upload" class="introbox">
+		<br>
+		<%= form_tag({:action => :upload}, :multipart => true) do %>
+		  Finally, upload your json file here:
+		  <%= file_field_tag 'movies', :required => true %>
+		  <br>
+		  And enter your name here:<br>
+		  <%= text_field_tag(:name, nil, :required => true) %>
+		  <br>
+		  <%= submit_tag("Submit", class: 'btn btn-large btn-primary') %>
+		<% end %>
+		<p class="text-error">
+		</p>
+	</div>
+		<div id="error">
+			<%= flash[:error] %>
+		</div>
 </div>
+
+<script>
+$("#next1").click(function () {
+      $("#intro").hide("slide", { direction: "left" }, 250, function(){
+			$("#bookmarklet").show("slide", { direction: "right" }, 250);
+
+      });      
+});
+
+$("#next2").click(function () {
+      $("#bookmarklet").hide("slide", { direction: "left" }, 250, function(){
+			$("#visit").show("slide", { direction: "right" }, 250);
+
+	});
+});
+$("#next3").click(function () {
+      $("#visit").hide("slide", { direction: "left" }, 250, function(){
+			$("#upload").show("slide", { direction: "right" }, 250);
+
+	});
+});
+$("#skipIntro").click(function () {
+      $("#intro").hide("slide", { direction: "left" }, 250, function(){
+			$("#upload").show("slide", { direction: "right" }, 250);
+
+	});
+});
+
+
+
+</script>

@@ -8,3 +8,30 @@ line-height: 17px;
 .btn {
 margin-bottom: 10px;
 }
+
+#bookmarklet, #visit, #upload{
+	display:none;
+}
+
+.introbox{
+	padding-top:100px;
+	margin:auto;
+	width:750px;
+	font-size:50px;
+	line-height:60px;
+	font-weight:200;
+	height:480px;
+}
+
+#next1, #next2, #next3{
+	float:bottom;
+}
+input[type="text"]{
+	height:34px;
+}
+
+#error{
+	margin:auto;
+	width:750px;
+	color:red;
+}
