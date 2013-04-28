@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
 			end			
 		end
 
-		movie_hash.each_value {|value| }
+		
 
 		#movie_list.sort_by! { |f| [-Float(f['rating'])] }
 

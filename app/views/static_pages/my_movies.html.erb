@@ -1,3 +1,9 @@
+
+<div class="container">
+<h2>Alright <%= current_user.name %>, here are the movies that your friends have seen but that you haven't.
+
+</h2>
+
 <% @my_movies.each do |movie| %>
 	<a target="_blank" href="<%= movie[1]["url"] %>"><%= movie[0] %></a>
 	<br>Seen by: <%= movie[1]["names"][0] %> 
@@ -10,3 +16,4 @@
 	<br>Rating: <%= movie[1]["ratings"] %>
 	<br><br>
 <% end %>
+</div>

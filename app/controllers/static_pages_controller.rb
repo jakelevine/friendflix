@@ -18,19 +18,20 @@ class StaticPagesController < ApplicationController
 		user_data["movies"] = @movies_json
 		user = User.create_new_user(user_data)
 		session[:name] = name
-	  	redirect_to '/my'
+	  	redirect_to '/u/'+current_user.name
 		
 	end
 
 	def all_users
 		@things = User.get_all_movies()
 		
-		render :text => current_user.movies
+		render :text => @things
 	end
 
 	def my_movies
+
 		
-		@my_movies = User.get_my_movies(current_user.name)
+		@my_movies = User.get_my_movies(params[:name])
 		
 		return @my_movies		
 	end
