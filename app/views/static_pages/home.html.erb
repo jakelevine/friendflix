@@ -1,0 +1,22 @@
+<div class="container">
+<h2>Hi Friend,
+<p>I sent you this link because I like your music taste. <br>Using this simple tool, we can find out what movies we should watch on Netflix. <br>Love,<br> Jake</p></h2>
+<br>
+<p>First, drag this link to your Bookmarks bar:
+<a href="javascript:var d=new Date();r=d.getTime();var e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('src','https://raw.github.com/cmenscher/nflx/master/bookmarklet.js?r='+r);document.body.appendChild(e);void(0);
+">Free My Ratings!</a>
+</p>
+<p>
+Then visit <a target = "_blank" href="http://movies.netflix.com/MoviesYouveSeen">http://movies.netflix.com/MoviesYouveSeen</a> and click your new Bookmarklet to free your ratings!
+</p>
+
+<br>
+<%= form_tag({:action => :upload}, :multipart => true) do %>
+  <%= label_tag('movies', "Now upload your json file here:") %>
+  <%= file_field_tag 'movies' %>
+  <br><br>
+  <%= label_tag(:name, "All done? Enter your name here:") %>
+  <%= text_field_tag(:name) %>
+  <%= submit_tag("Submit", class: 'btn') %>
+<% end %>
+</div>

@@ -1,0 +1,12 @@
+<% @my_movies.each do |movie| %>
+	<a target="_blank" href="<%= movie[1]["url"] %>"><%= movie[0] %></a>
+	<br>Seen by: <%= movie[1]["names"][0] %> 
+				<% if movie[1]["names"].length > 1 %> 
+					<% movie[1]["names"][1..100].each do |name| %>and
+						<%= name %> 
+					<% end %>
+				<% end %>
+				
+	<br>Rating: <%= movie[1]["ratings"] %>
+	<br><br>
+<% end %>
