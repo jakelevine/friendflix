@@ -1,15 +1,15 @@
 
 <div class="container">
-<h2>Alright <%= current_user.name %>, here are the movies that your friends have seen but that you haven't.
+<h2>Alright <%= @name %>, here are the movies that your friends have seen but that you haven't.
 
 </h2>
 
 <% @my_movies.each do |movie| %>
 	<a target="_blank" href="<%= movie[1]["url"] %>"><%= movie[0] %></a>
-	<br>Seen by: <%= movie[1]["names"][0] %> 
+	<br>Seen by: <a target="_blank" href="/u/<%= movie[1]["names"][0] %>"><%= movie[1]["names"][0] %></a>
 				<% if movie[1]["names"].length > 1 %> 
 					<% movie[1]["names"][1..100].each do |name| %>and
-						<%= name %> 
+						<a target="_blank" href="/u/<%= name %>"><%= name %></a>
 					<% end %>
 				<% end %>
 				

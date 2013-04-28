@@ -1,4 +1,8 @@
+
+
 <div class="container">
+
+
 <h2>Hi Friend,
 <p>I sent you this link because I like your taste in movies. <br>Using this simple tool, we can find out what movies we should watch on Netflix. <br>Love,<br> Jake</p></h2>
 <br>
@@ -19,4 +23,9 @@ Then visit <a target = "_blank" href="http://movies.netflix.com/MoviesYouveSeen"
   <%= text_field_tag(:name, nil, :required => true) %>
   <%= submit_tag("Submit", class: 'btn') %>
 <% end %>
+
+<p class="text-error">
+<%= flash[:error] %>
+</p>
+
 </div>

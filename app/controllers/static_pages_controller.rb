@@ -16,10 +16,15 @@ class StaticPagesController < ApplicationController
 		end
 		
 		user_data["movies"] = @movies_json
-		user = User.create_new_user(user_data)
-		session[:name] = name
-	  	redirect_to '/u/'+current_user.name
-		
+	
+		begin 
+			User.create_new_user(user_data)
+			session[:name] = name
+		  	redirect_to '/u/'+params[:name]
+		rescue
+			flash[:error] = "Sorry, something went wrong. That name or list of movies already exists. Please try again."
+			redirect_to '/'
+		end
 	end
 
 	def all_users
@@ -30,10 +35,10 @@ class StaticPagesController < ApplicationController
 
 	def my_movies
 
-		
 		@my_movies = User.get_my_movies(params[:name])
-		
-		return @my_movies		
+		@name = params[:name]
+
+		return @my_movies, @name
 	end
 
 

@@ -3,6 +3,8 @@
 
 class User < ActiveRecord::Base
 	
+	validates :name, presence: true, uniqueness: { case_sensitive: false }
+	
 	def self.create_new_user(user_data)
 	  create! do |user|
 	    user.name = user_data["name"]
