@@ -59,7 +59,6 @@ class User < ActiveRecord::Base
 		sorted_movies = all_movies.sort_by {|k,v| [-v["ratings"], -v["names"].length]}
 		
 		return sorted_movies
-
 	end
 
 	def self.get_array_avg(arr)

@@ -28,9 +28,16 @@ class StaticPagesController < ApplicationController
 	end
 
 	def all_users
-		@things = User.get_all_movies()
+		all_movies = User.get_all_movies()		
+
+		all_movies.each_value do |value|
+			value["ratings"] = User.get_array_avg(value["ratings"])
+		end
+
+		@sorted_movies = all_movies.sort_by {|k,v| [-v["ratings"], -v["names"].length]}
 		
-		render :text => @things
+		return @sorted_movies
+		
 	end
 
 	def my_movies
