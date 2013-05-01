@@ -9,7 +9,7 @@
 	<p>I like your taste in movies. <p>
 		This simple tool will help us decide what to watch on Netflix.
 		<p>Love,<br> Jake</p>
-	<div id ="next1" class="btn btn-large btn-primary">Next</div>&nbsp;&nbsp;<div id ="skipIntro" class="btn btn-large">Skip Intro</div>
+	<div id ="next1" class="btn btn-large btn-primary">Next</div>&nbsp;<div id ="skipIntro" class="btn btn-large">Skip Intro</div>
 	</div>
 
 	<div id="bookmarklet" class="introbox">
@@ -32,7 +32,7 @@
 		  Finally, upload your json file here:
 		  <%= file_field_tag 'movies', :required => true %>
 		  <br>
-		  And enter your name here:<br>
+		  And pick a username:<br>
 		  <%= text_field_tag(:name, nil, :required => true) %>
 		  <br>
 		  <%= submit_tag("Submit", class: 'btn btn-large btn-primary') %>

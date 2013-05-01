@@ -7,7 +7,7 @@ class StaticPagesController < ApplicationController
 		@movies_json = Hash.new
 		final = Hash.new
 		movies = params[:movies]
-		name = params[:name]
+		name = params[:name].gsub(/\s+/, "")
 
 		user_data["name"] = name
 		
@@ -20,7 +20,7 @@ class StaticPagesController < ApplicationController
 		begin 
 			User.create_new_user(user_data)
 			session[:name] = name
-		  	redirect_to '/u/'+params[:name]
+		  	redirect_to '/u/'+name
 		rescue
 			flash[:error] = "Sorry, something went wrong. That name or list of movies already exists. Please try again."
 			redirect_to '/'
