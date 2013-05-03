@@ -1,6 +1,10 @@
 #!/bin/env ruby
 # encoding: utf-8
 
+
+require 'uri'
+require 'cgi'
+
 class User < ActiveRecord::Base
 	
 	validates :name, presence: true, uniqueness: { case_sensitive: false }
@@ -18,23 +22,18 @@ class User < ActiveRecord::Base
 		all_users.each do |user|
 			movies_json = JSON.parse(user.movies)
 			movies_json.each do |movie|
-				if movie_hash[movie["movieName"]]
-					movie_hash[movie["movieName"]]["ratings"] << Float(movie["rating"])
-					movie_hash[movie["movieName"]]["names"] << user.name
+				uri = URI.parse(movie["url"])
+				uri_params = URI.parse(uri.path).to_s
+				movie_id = uri_params.split('/').last
+					
+				if movie_hash[movie_id]
+					movie_hash[movie_id]["ratings"] << Float(movie["rating"])
+					movie_hash[movie_id]["names"] << user.name
 				else
-					movie_hash[movie["movieName"]] = {'url' => movie["url"], 'names' => [user.name], 'ratings' => [Float(movie["rating"])]}
+					movie_hash[movie_id] = {'movie_name' => movie["movieName"], 'url' => movie["url"], 'names' => [user.name], 'ratings' => [Float(movie["rating"])]}
 				end
 			end			
 		end
-
-		
-
-		#movie_list.sort_by! { |f| [-Float(f['rating'])] }
-
-		#movie_names = []
-		#movie_list.each do |movie|
-		#	movie_names.push(movie["movieName"])
-		#end
 
 		return movie_hash
 	end
@@ -46,7 +45,7 @@ class User < ActiveRecord::Base
 
 		movies_json = JSON.parse(user.movies)
 		movies_json.each do |movie|
-			my_movies.push(movie)				
+			my_movies.push(movie)
 		end			
 
 		all_movies = User.get_all_movies()

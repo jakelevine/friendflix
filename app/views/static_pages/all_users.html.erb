@@ -5,7 +5,7 @@ Our favorite movies:
 </div>
 <div class ="movies">
 <% @sorted_movies.each do |movie| %>
-	<a target="_blank" href="<%= movie[1]["url"] %>"><%= movie[0] %></a>
+	<a target="_blank" href="<%= movie[1]["url"] %>"><%= movie[1]["movie_name"] %></a>
 	<div class="details">
 	<br>Seen by: <a target="_blank" href="/u/<%= movie[1]["names"][0] %>"><%= movie[1]["names"][0] %></a>
 				<% if movie[1]["names"].length > 1 %> 
