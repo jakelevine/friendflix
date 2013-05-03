@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
 		all_users.each do |user|
 			movies_json = JSON.parse(user.movies)
 			movies_json.each do |movie|
-				if URI.parse(movie["url"])
+				if movie["url"]
 					uri = URI.parse(movie["url"])
 					uri_params = URI.parse(uri.path).to_s
 					movie_id = uri_params.split('/').last
