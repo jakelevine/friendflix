@@ -7,7 +7,7 @@ class StaticPagesController < ApplicationController
 		@movies_json = Hash.new
 		final = Hash.new
 		movies = params[:movies]
-		name = params[:name].gsub(/\s+/, "")
+		name = params[:name].gsub(/\s+/, "").downcase
 
 		user_data["name"] = name
 		
@@ -47,6 +47,7 @@ class StaticPagesController < ApplicationController
 		@name = params[:name]
 
 		return @my_movies, @name
+		#render :json => @my_movies
 	end
 
 

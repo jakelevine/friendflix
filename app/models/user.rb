@@ -47,11 +47,16 @@ class User < ActiveRecord::Base
 
 		movies_json = JSON.parse(user.movies)
 		movies_json.each do |movie|
-			my_movies.push(movie)
+			if movie["url"]
+				uri = URI.parse(movie["url"])
+				uri_params = URI.parse(uri.path).to_s
+				movie_id = uri_params.split('/').last
+				my_movies.push(movie_id)
+			end
 		end			
 
 		all_movies = User.get_all_movies()
-		my_movies.each { |k| all_movies.delete k["movieName"] }
+		my_movies.each { |k| all_movies.delete k }
 
 		all_movies.each_value do |value|
 			value["ratings"] = get_array_avg(value["ratings"])
