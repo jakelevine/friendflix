@@ -14,7 +14,7 @@ margin-bottom: 10px;
 }
 
 .introbox{
-	padding-top:100px;
+	padding-top:75px;
 	margin:auto;
 	width:750px;
 	font-size:50px;
@@ -45,4 +45,27 @@ input[type="text"]{
 .details{
 	font-weight:200;
 	display:inline;
+}
+.icon-arrow-left {
+background-position: -240px -93px;
+}
+#signin_form{
+	float:right;
+	display:none;
+}
+#signin_form form{
+	margin:0 !important;
+	padding-top:6px;
+}
+
+#name {
+height: 20px;
+line-height: 20px;
+width:200px;
+margin-top:0px;
+margin-bottom:0px;
+}
+
+.navbar .btn{
+	margin:0 !important;
 }

@@ -1,15 +1,18 @@
 Friendflix::Application.routes.draw do
 
+  root to: 'static_pages#home'
+
   match "/all" => "static_pages#all_users"
 
   #match "/my" => "static_pages#my_movies"
 
   match "/u/:name" => "static_pages#my_movies"
 
-
-  root to: 'static_pages#home'
+  match "/signin" => "static_pages#signin"
 
   match "/upload" => "static_pages#upload"
+  match "/signout" => "static_pages#destroy", :as => :signout
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

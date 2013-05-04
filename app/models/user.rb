@@ -63,7 +63,8 @@ class User < ActiveRecord::Base
 		end
 
 		sorted_movies = all_movies.sort_by {|k,v| [-v["ratings"], -v["names"].length]}
-		
+				
+
 		return sorted_movies
 	end
 

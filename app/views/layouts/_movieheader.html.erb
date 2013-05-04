@@ -1,22 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>WTF Should I Watch?</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-
-<% if @movie_layout %>
-	<%= render 'layouts/movieheader' %>
-
-<% else %>
-	
-	<div class="navbar navbar-fixed-top">
+<div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     
-    <% if current_user %>        	
+ <% if current_user %>        	
             <p class="navbar-text pull-right">
               Logged in as <a href="/u/<%= current_user.name %>" class="navbar-link"><%= current_user.name %></a>
               &nbsp;&nbsp;&nbsp;
@@ -24,6 +9,8 @@
               &nbsp;&nbsp;&nbsp;
             </p>
     <% else %>
+			<a class="brand" href="/">&nbsp;<i class="icon-arrow-left"></i>&nbsp;Get Your Own</a>	
+
             <p class="navbar-text pull-right">
               <a id="show_signin" class="navbar-link">Sign in</a>
               &nbsp;&nbsp;&nbsp;              
@@ -34,29 +21,6 @@
 	  <%= text_field_tag(:name, nil, :required => true) %>
       <%= submit_tag "Submit", class: "btn" %>
     <% end %>
-</div>
 
   </div>
 </div>
-
-
-<% end %>
-
-
-<div class="container">
-
-<%= yield %>
-
-</div>
-
-<script>
-$("#show_signin").click(function () {
-      $("#show_signin").fadeOut(function(){
-			$("#signin_form").fadeIn();
-
-      });      
-});
-</script>
-
-</body>
-</html>

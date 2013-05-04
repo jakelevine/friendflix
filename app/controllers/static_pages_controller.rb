@@ -36,6 +36,8 @@ class StaticPagesController < ApplicationController
 
 		@sorted_movies = all_movies.sort_by {|k,v| [-v["ratings"], -v["names"].length]}
 		
+		@movie_layout = true
+		
 		return @sorted_movies
 	#render :json => @sorted_movies
 		
@@ -46,11 +48,21 @@ class StaticPagesController < ApplicationController
 		@my_movies = User.get_my_movies(params[:name])
 		@name = params[:name]
 
+		@movie_layout = true
+
 		return @my_movies, @name
 		#render :json => @my_movies
 	end
 
+	def destroy
+	  	session[:name] = nil
+	  	redirect_to root_url, flash[:notice] => "Signed out!"
+	end
 
+	def signin
+		session[:name] = params[:name]
+		redirect_to '/u/'+params[:name]
 
+	end
 
 end
